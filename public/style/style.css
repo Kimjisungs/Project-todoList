@@ -6,7 +6,222 @@
   padding: 0;
 }
 
+/* 공통 */
+.a11y-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  visibility: hidden;
+  clip: rect(0,0,0,-4px);
+}
+
+input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+}
+
+.chk-type .custom-control-label {
+  padding: 5px 0 5px 58px;
+  line-height: 36px;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.chk-type .custom-control-label::after,
+.chk-type .custom-control-label::before {
+  width: 2.5rem;
+  height: 2.5rem;
+  left: 0;
+}
+
+.btn {
+  font-size: 1.4rem;
+  border: 1px solid #ced4da !important;
+}
+
+.btn.btn-outline-danger {
+  border: 1px solid #dc3545 !important;
+}
+
+/* .btns {
+  border: 1px solid #eee;
+  background-color: transparent;
+} */
+
+input[type="text"] {
+  width: 100%;
+  height: 70px;
+  padding: 0 10px;
+  line-height: 43px;
+}
+
+header {
+  padding: 100px 0 60px;
+}
+
+header .logo {
+  font-size: 6rem;
+}
+
+.input-todoList {
+  position: relative;
+}
+
+.input-todoList button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16%;
+  height: 100%;
+}
+
+.todos {
+  margin-top: 40px;
+  padding: 0 16px;
+}
+
+.todos > li {
+  margin-top: 20px;
+}
+
+.todos > li:first-child {
+  margin-top: 0;
+}
+
+.todos-inner > div {
+  line-height: 44px;
+}
+
+.todos-inner .date {
+  font-size: 1.5rem;
+  color: #999;
+}
+
+.todos-inner label {
+  font-size: 1.6rem;
+}
+
+.memo-box {
+  margin-top: 100px;
+  padding: 30px 20px;
+  border: 1px solid #ced4da;
+}
+
+.memo-box .dropdown {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.memo-box .form-control {
+  display: inline-block;
+  vertical-align: top;
+  width: 150px;
+  height: auto;
+}
+
+.memo-create {
+  margin-top: 40px;
+}
+
+.memo-create button {
+  padding: 1rem 1.5rem;
+}
+
+.writer {
+  margin-top: 20px;
+}
+
+.writer textarea {
+  width: 100%;
+  height: 250px;
+  resize: none;
+  border: 1px solid #ced4da;
+}
+
+.memo-btn {
+  margin-top: 20px;
+}
+
+.memo-list-wrap {
+  margin-top: 50px;
+}
+
+.memo-list {
+  position: relative;
+  width: 100%;
+}
+
+.memo-list > li {
+  margin-top: 20px;
+}
+
+.memo-list button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52px;
+  height: 52px;
+  padding: 10px 20px;
+  border: 1px solid #ced4da;
+  background-color: #eee;
+}
+
+
+.sticker-memo {
+  padding: 40px 30px;
+  border: 1px solid #ced4da;
+}
+
+.dropdown-menu .drop-circle {
+  display: block;
+  margin-top: 10px;
+  text-indent: -9999px;
+  color: transparent;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.dropdown-menu .cir-red {
+  background-color: red;
+}
+
+.dropdown-menu .cir-blue {
+  background-color: blue;
+}
+
+.dropdown-menu .cir-yellow {
+  background-color: yellow;
+}
+
+.dropdown-menu .cir-green {
+  background-color: green;
+}
+
+.dropdown-menu .cir-skyblue {
+  background-color: skyblue;
+}
 
 @media (min-width: 768px) {
+  .todos-inner label {
+    font-size: 2rem;
+  }
 
+  .dropdown-menu.type2 {
+    white-space: nowrap;
+  }
+
+  .dropdown-menu .drop-circle {
+    display: inline-block;
+    margin: 0 5px;
+    vertical-align: top;
+    text-indent: -9999px;
+    color: transparent;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+  }
 }
