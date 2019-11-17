@@ -21,6 +21,10 @@ input[type="checkbox"]:checked + label {
   text-decoration: line-through;
 }
 
+.chk-type {
+  position: relative;
+}
+
 .chk-type .custom-control-label {
   padding: 5px 0 5px 58px;
   line-height: 36px;
@@ -28,6 +32,7 @@ input[type="checkbox"]:checked + label {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 .chk-type .custom-control-label::after,
@@ -40,6 +45,10 @@ input[type="checkbox"]:checked + label {
 .btn {
   font-size: 1.4rem;
   border: 1px solid #ced4da !important;
+}
+
+.btn.memoFontItalic.active {
+  font-style: italic;
 }
 
 .btn.btn-outline-danger {
@@ -137,6 +146,7 @@ header .logo {
 .writer textarea {
   width: 100%;
   height: 250px;
+  padding: 20px;
   resize: none;
   border: 1px solid #ced4da;
 }
@@ -173,6 +183,7 @@ header .logo {
 .sticker-memo {
   padding: 40px 30px;
   border: 1px solid #ced4da;
+  word-break: break-all;
 }
 
 .dropdown-menu .drop-circle {

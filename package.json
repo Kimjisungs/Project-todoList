@@ -15,7 +15,12 @@
     "json-server": "^0.15.1",
     "swiper": "^5.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kimjisungs/Project-todoList.git"
