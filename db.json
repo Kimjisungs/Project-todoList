@@ -7,16 +7,10 @@
       "date": "2019-11-16"
     },
     {
-      "id": 2,
-      "content": "투두 할일 리스트 오늘",
-      "completed": true,
-      "date": "2019-11-17"
-    },
-    {
-      "id": 3,
-      "content": "오늘 둘이 할일",
+      "id": 5,
+      "content": "수정하고있습니다.123765우와ㅗ 된다",
       "completed": false,
-      "date": "2019-11-17"
+      "date": "2019-11-18"
     }
   ],
   "memo": [
@@ -57,74 +51,11 @@
       "bgColor": "white"
     },
     {
-      "id": 11,
-      "content": "동해물과백두산이 ",
+      "id": 5,
+      "content": "폰트사이즈 추가 행동\n",
       "fontWeight": "700",
-      "fontSize": "26px",
-      "fontColor": "rgb(255, 0, 0)",
-      "fontItalic": "normal",
-      "bgColor": "blue"
-    },
-    {
-      "id": 12,
-      "content": "asdfsdfsf",
-      "fontWeight": "700",
-      "fontSize": "26px",
-      "fontColor": "rgb(255, 255, 0)",
-      "fontItalic": "italic",
-      "bgColor": "blue"
-    },
-    {
-      "id": 14,
-      "content": "동해물과백두산이 마르고닳도록 동해물과백두산이 마르고닳도록동해물과백두산이 마르고닳도록",
-      "fontWeight": "700",
-      "fontSize": "26px",
-      "fontColor": "rgb(255, 255, 255)",
-      "fontItalic": "italic",
-      "bgColor": "blue"
-    },
-    {
-      "id": 17,
-      "content": "22222",
-      "fontWeight": 400,
-      "fontSize": 20,
-      "fontColor": "#222",
-      "fontItalic": "normal",
-      "bgColor": "white"
-    },
-    {
-      "id": 18,
-      "content": "ㅁㄴㅇㄻㄴㅇㄹ",
-      "fontWeight": 400,
-      "fontSize": "26px",
-      "fontColor": "#222",
-      "fontItalic": "normal",
-      "bgColor": "white"
-    },
-    {
-      "id": 19,
-      "content": "동해물과백두산이",
-      "fontWeight": "700",
-      "fontSize": "26px",
-      "fontColor": "rgb(255, 255, 0)",
-      "fontItalic": "italic",
-      "bgColor": "blue"
-    },
-    {
-      "id": 20,
-      "content": "프로퍼티 getOut",
-      "fontWeight": "700",
-      "fontSize": "26px",
-      "fontColor": "rgb(255, 255, 0)",
-      "fontItalic": "italic",
-      "bgColor": "skyblue"
-    },
-    {
-      "id": 21,
-      "content": "동해물과백두산이",
-      "fontWeight": 400,
       "fontSize": "40px",
-      "fontColor": "#222",
+      "fontColor": "rgb(255, 255, 255)",
       "fontItalic": "italic",
       "bgColor": "blue"
     }

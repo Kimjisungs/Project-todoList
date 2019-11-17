@@ -41,14 +41,15 @@ const maxId = (list) => (list.length ? Math.max(...list.map(todo => todo.id)) + 
 
 const thisId = (target) => +target.parentNode.parentNode.parentNode.id;
 
-const renderModify = (target) => {
+const createModify = (target) => {
+  if (!target.classList.contains('modifyTodo')) return;
   const $createInput = document.createElement('input');
   const todoNode = target.parentNode.previousElementSibling.previousElementSibling;
 
   todos.forEach(({ id, content }) => {
     if (id === thisId(target)) {
       $createInput.setAttribute('type', 'text');
-      $createInput.setAttribute('class', 'labelModify');
+      $createInput.setAttribute('class', 'label-modify');
       $createInput.setAttribute('value', content);
     }
   });
@@ -56,9 +57,18 @@ const renderModify = (target) => {
   todoNode.appendChild($createInput);
 };
 
-$todos.addEventListener('click', ({ target }) => {
-  if (!target.classList.contains('modifyTodo')) return;
-  renderModify(target);
+const writeModify = async (target, keyCode) => {
+  if (!target.classList.contains('label-modify')) return;
+  const content = target.value;
+  await axios.patch(`http://localhost:9000/todos/${thisId(target)}`, { content });
+  if (keyCode === 13) {
+    target.parentNode.removeChild(target);
+    getTodo();
+  }
+};
+
+$todos.addEventListener('keyup', ({ target, keyCode }) => {
+  writeModify(target, keyCode);
 });
 
 const dateTodo = () => {
@@ -81,15 +91,10 @@ const patchTodo = async ($id, checked) => {
 };
 
 const deleteTodo = async (target) => {
+  if (!target.classList.contains('removeTodo')) return;
   await axios.delete(`http://localhost:9000/todos/${thisId(target)}`);
-}
-
-const modifyTodo = async (target) => {
-  const classTarget = target.classList;
-  if (classTarget.contains('modifyTodo') || classTarget.contains('fa-pencil-alt')) {
-    // todos.map(todo => todo.id === thisId(target) ? todo : todo )
-  }
-}
+  getTodo();
+};
 
 window.addEventListener('load', () => {
   getTodo();
@@ -112,10 +117,8 @@ $todos.addEventListener('change', ({ target }) => {
 });
 
 $todos.addEventListener('click', ({ target }) => {
-  if (!target.classList.contains('removeTodo')) return;
   deleteTodo(target);
-  // modifyTodo(target);
-  getTodo();
+  createModify(target);
 });
 
 
