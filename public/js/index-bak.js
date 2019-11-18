@@ -211,13 +211,26 @@ const _each = (item, iter) => {
   }
 };
 
+const fontStyle = {
+  fontWeight: [400, 700],
+  fontSize: [14, 16, 20, 26, 40, 70],
+  color: '#222',
+  italic: 'normal'
+}
+
+const _fontSyle = [];
+
 const fontWeightEditor = (target) => {
-  const $weightItem = document.querySelector('.fontWeight');
-  for (list of $weightItem.children) {
-    if (list === target) {
-      $textArea.style.fontWeight = target.textContent;
-    }
-  }
+  if (!target.classList.contains('dropdown-item')) return;
+
+  $textArea.style.fontWeight = target.textContent;
+  const routes = $memoEditor.children[0].children[0].children[0].children[0].children[1].children;
+  console.log(routes);
+  // _each(routes, (list) => {
+  //   if (list === target) {
+  //     $textArea.style.fontWeight = target.textContent;
+  //   }
+  // });
 };
 
 const fontSizeEditor = (target) => {
@@ -275,17 +288,16 @@ const getMemo = async () => {
 };
 
 const postMemo = async () => {
-  const data = {
-    id: maxId(memo),
-    content: $textArea.value,
-    fontWeight: $textArea.style.fontWeight || 400,
-    fontSize: $textArea.style.fontSize || 20,
-    fontColor: $textArea.style.color || '#222',
-    fontItalic: $textArea.style.fontStyle || 'normal',
-    bgColor: $textArea.style.backgroundColor || 'white'
-  }
   try {
-    await axios.post('http://localhost:9000/memo', data);
+    await axios.post('http://localhost:9000/memo', {
+      id: maxId(memo),
+      content: $textArea.value,
+      fontWeight: $textArea.style.fontWeight || 400,
+      fontSize: $textArea.style.fontSize || 20,
+      fontColor: $textArea.style.color || '#222',
+      fontItalic: $textArea.style.fontStyle || 'normal',
+      bgColor: $textArea.style.backgroundColor || 'white'
+    });
   } catch (e) {
     console.log(new Error('Error'));
   }

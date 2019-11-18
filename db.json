@@ -2,13 +2,13 @@
   "todos": [
     {
       "id": 1,
-      "content": "오늘",
+      "content": "오늘121212",
       "completed": false,
       "date": "2019-11-16"
     },
     {
-      "id": 5,
-      "content": "수정하고있습니다.123765우와ㅗ 된다",
+      "id": 3,
+      "content": "ㅓㅏㄴㅇㅁㅇㄴㄹㄴㅇdsadf",
       "completed": false,
       "date": "2019-11-18"
     }
@@ -58,6 +58,114 @@
       "fontColor": "rgb(255, 255, 255)",
       "fontItalic": "italic",
       "bgColor": "blue"
+    },
+    {
+      "id": 6,
+      "content": "가능가능?\n",
+      "fontWeight": 400,
+      "fontSize": 20,
+      "fontColor": "#222",
+      "fontItalic": "normal",
+      "bgColor": "white"
+    },
+    {
+      "id": 7,
+      "content": "된다  투두리스트",
+      "fontWeight": 400,
+      "fontSize": "40px",
+      "fontColor": "#222",
+      "fontItalic": "italic",
+      "bgColor": "blue"
+    },
+    {
+      "id": 8,
+      "content": "sfasdfsadf",
+      "fontWeight": "700",
+      "fontSize": "26px",
+      "fontColor": "rgb(255, 255, 0)",
+      "fontItalic": "italic",
+      "bgColor": "blue"
+    },
+    {
+      "id": 9,
+      "content": "sdfgdgfg\n",
+      "fontWeight": 400,
+      "fontSize": "40px",
+      "fontColor": "#222",
+      "fontItalic": "italic",
+      "bgColor": "blue"
+    },
+    {
+      "id": 10,
+      "content": "asdfasdfsdf",
+      "fontWeight": 400,
+      "fontSize": 20,
+      "fontColor": "#222",
+      "fontItalic": "normal",
+      "bgColor": "white"
+    },
+    {
+      "id": 11,
+      "content": "asfdqwefwef",
+      "fontWeight": 400,
+      "fontSize": 20,
+      "fontColor": "#222",
+      "fontItalic": "normal",
+      "bgColor": "white"
+    },
+    {
+      "id": 12,
+      "content": "asdfsdafsdf",
+      "fontWeight": 400,
+      "fontSize": 20,
+      "fontColor": "#222",
+      "fontItalic": "normal",
+      "bgColor": "white"
+    },
+    {
+      "id": 13,
+      "content": "1231312112",
+      "fontWeight": 400,
+      "fontSize": 20,
+      "fontColor": "#222",
+      "fontItalic": "normal",
+      "bgColor": "white"
+    },
+    {
+      "id": 14,
+      "content": "동해물과백두산이",
+      "fontWeight": "40",
+      "fontSize": "40px",
+      "fontColor": "rgb(255, 255, 0)",
+      "fontItalic": "italic",
+      "bgColor": "blue"
+    },
+    {
+      "id": 15,
+      "content": "asdfsdfasfsdaf",
+      "fontWeight": 400,
+      "fontSize": 20,
+      "fontColor": "#222",
+      "fontItalic": "normal",
+      "bgColor": "white"
+    },
+    {
+      "id": 16,
+      "content": "sdadasc가나다라바",
+      "fontWeight": "700",
+      "fontSize": "20px",
+      "fontColor": "#222",
+      "fontItalic": "italic",
+      "bgColor": "yellow"
+    },
+    {
+      "id": 17,
+      "content": "asdfsdfsdf",
+      "fontWeight": "700",
+      "fontSize": "40px",
+      "fontColor": "#222",
+      "fontItalic": "normal",
+      "bgColor": "white"
     }
   ]
 }
