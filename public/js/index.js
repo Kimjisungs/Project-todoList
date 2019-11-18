@@ -4,7 +4,6 @@ const $todos = document.querySelector('#todos');
 
 let todos = [];
 
-
 const renderTodos = () => {
   todos.sort((a, b) => b.id - a.id);
   let html = '';
@@ -53,69 +52,109 @@ const createModify = (target) => {
   todoNode.appendChild($createInput);
 };
 
-const writeModify = async (target, keyCode) => {
-  if (!target.classList.contains('label-modify')) return;
-  const content = target.value;
-  await axios.patch(`http://localhost:9000/todos/${thisId(target)}`, { content });
-  if (keyCode === 13) {
-    target.parentNode.removeChild(target);
-    getTodo();
-  }
-};
-
-$todos.addEventListener('keyup', ({ target, keyCode }) => {
-  writeModify(target, keyCode);
-});
-
 const dateTodo = () => {
   const date = new Date();
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 };
 
-const getTodo = async () => {
-  const response = await axios.get('http://localhost:9000/todos');
-  todos = response.data;
-  renderTodos();
+const promiseGetTodo = () => axios.get('http://localhost:9000/todos').then(res => res.data);
+
+const promisePostTodo = (content) => axios.post('http://localhost:9000/todos', {
+  id: maxId(todos), content, completed: false, date: dateTodo()
+});
+
+const promisePatchTodoCheck = (id, checked) => axios.patch(`http://localhost:9000/todos/${id}`, { completed: checked });
+
+const promisePatchTodoContent = (target, content) => axios.patch(`http://localhost:9000/todos/${thisId(target)}`, { content });
+
+const promiseDeleteTodo = (target) => axios.delete(`http://localhost:9000/todos/${thisId(target)}`);
+
+const ajaxGetTodo = async () => {
+  try {
+    todos = await promiseGetTodo();
+    renderTodos();
+  } catch (e) {
+    console.log(new Error('Error'));
+  }
 };
 
-const postTodo = async (target, keyCode) => {
-  const content = target.value.trim();
-  if (keyCode !== 13 || content === '' || !target.classList.contains('form-control')) return;
-  target.value = '';
-  await axios.post('http://localhost:9000/todos', { id: maxId(todos), content, completed: false, date: dateTodo() });
-  getTodo();
+const ajaxPostTodo = async (content) => {
+  try {
+    await promisePostTodo(content);
+  } catch (e) {
+    console.log(new Error('Error'));
+  }
 };
 
-const patchTodo = async ($id, checked) => {
-  await axios.patch(`http://localhost:9000/todos/${$id}`, { completed: checked });
+const ajaxPatchTodoCheck = async (id, checked) => {
+  try {
+    await promisePatchTodoCheck(id, checked);
+  } catch (e) {
+    console.log(new Error('Error'));
+  }
+};
+
+const ajaxPatchTodoContent = async (target, content) => {
+  try {
+    await promisePatchTodoContent(target, content);
+  } catch (e) {
+    console.log(new Error('Error'));
+  }
+};
+
+const ajaxDeleteTodo = async (target) => {
+  try {
+    await promiseDeleteTodo(target);
+  } catch (e) {
+    console.log(new Error('Error'));
+  }
 };
 
 const deleteTodo = async (target) => {
   if (!target.classList.contains('removeTodo')) return;
-  await axios.delete(`http://localhost:9000/todos/${thisId(target)}`);
-  getTodo();
+  ajaxDeleteTodo(target);
+  ajaxGetTodo();
+};
+
+const modifyTodo = (target, keyCode) => {
+  if (!target.classList.contains('label-modify')) return;
+  const content = target.value;
+  ajaxPatchTodoContent(target, content);
+  modifyTodoEnterEvent(target, keyCode);
+};
+
+const modifyTodoEnterEvent = (target, keyCode) => {
+  if (keyCode === 13) {
+    target.parentNode.removeChild(target);
+    ajaxGetTodo();
+  }
 };
 
 window.addEventListener('load', () => {
-  getTodo();
+  ajaxGetTodo();
 });
 
 $inputTodo.addEventListener('keyup', ({ target, keyCode }) => {
-  postTodo(target, keyCode);
+  const content = target.value.trim();
+  if (keyCode !== 13 || content === '' || !target.classList.contains('form-control')) return;
+  target.value = '';
+  ajaxPostTodo(content);
+  ajaxGetTodo();
+});
+
+$todos.addEventListener('keyup', ({ target, keyCode }) => {
+  modifyTodo(target, keyCode);
 });
 
 $todos.addEventListener('change', ({ target }) => {
   if (!target.classList.contains('custom-control-input')) return;
-  const $id = +target.parentNode.parentNode.parentNode.id;
   const { checked } = target;
-  patchTodo($id, checked);
-  getTodo();
+  const $id = +target.parentNode.parentNode.parentNode.id;
+  ajaxPatchTodoCheck($id, checked);
+  ajaxGetTodo();
 });
 
 $todos.addEventListener('click', ({ target }) => {
   deleteTodo(target);
   createModify(target);
 });
-
-
-

@@ -2,25 +2,13 @@
   "todos": [
     {
       "id": 1,
-      "content": "오늘121212",
+      "content": "오늘121212677765",
       "completed": false,
       "date": "2019-11-16"
     },
     {
       "id": 2,
-      "content": "데이터추가",
-      "completed": false,
-      "date": "2019-11-18"
-    },
-    {
-      "id": 3,
-      "content": "가나다라마바사",
-      "completed": false,
-      "date": "2019-11-18"
-    },
-    {
-      "id": 5,
-      "content": "1234777777777",
+      "content": "투두리스트 추가111447777777777777777",
       "completed": false,
       "date": "2019-11-18"
     }
