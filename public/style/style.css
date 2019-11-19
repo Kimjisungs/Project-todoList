@@ -21,6 +21,15 @@ input[type="checkbox"]:checked + label {
   text-decoration: line-through;
 }
 
+.wrapper {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  background-color: #fff;
+}
+
 .chk-type {
   position: relative;
 }
