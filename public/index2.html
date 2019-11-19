@@ -7,40 +7,36 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="name">
+    <button onclick="calculate()">calculate</button>
 
-
-    <div class="one">
-      <div class="item">1</div>
-      <div class="item">2</div>
-      <div class="item">3</div>
-    </div>
-    <div class="two">
-      <div class="item">4</div>
-      <div class="item">5</div>  <!-- <-- 특정 요소 찾는법 -->
-      <div class="item">6</div>
-    </div>
-
-  </div>
-
-
-  <div class="writer">
-    <textarea name="" id="" cols="30" rows="10" class="textarea"></textarea>
-  </div>
-
-  <script>
-
-    const $name = document.querySelector('.name');
-    const $textarea = document.querySelector('.textarea');
-
-    $name.onclick = (e) => {
-      if (!e.target.classList.contains('item')) return;
-
-      $textarea.value = target.textContent;
-
-      // console.log($name.children[1].children[1]);
-
+    <script>
+     window.onload = function () {
+        if (window.Notification) {
+            Notification.requestPermission();
+        }
     }
-  </script>
+
+        function calculate() {
+            setTimeout(function () {
+                notify();
+            }, 1000);
+        }
+
+        function notify() {
+            if (Notification.permission !== 'granted') {
+                alert('notification is disabled');
+            }
+            else {
+                var notification = new Notification('Notification title', {
+                    icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
+                    body: 'Notification text',
+                });
+
+                notification.onclick = function () {
+                    window.open('http://google.com');
+                };
+            }
+        }
+    </script>
 </body>
 </html>

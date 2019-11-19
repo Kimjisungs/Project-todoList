@@ -4,59 +4,6 @@ const $todos = document.querySelector('#todos');
 
 let todos = [];
 
-const renderTodos = () => {
-  let html = '';
-
-  todos.sort((a, b) => b.id - a.id);
-  todos.forEach(({
-    id, content, completed, date
-  }) => {
-    html += `
-    <li id="${id}">
-      <div class="row todos-inner">
-        <div class="col-12 col-md-12 col-lg-8 custom-control custom-checkbox chk-type">
-          <input type="checkbox" class="custom-control-input" id="inputCheck-${id}" ${completed ? 'checked' : ''}>
-          <label class="custom-control-label" for="inputCheck-${id}">${content}</label>
-        </div>
-        <div class="col-6 col-md-8 col-lg-2 text-right">
-          <span id="dateTodo" class="date">${date}</span>
-        </div>
-        <div class="col-6 col-md-4 col-lg-2 text-right">
-          <button type="button" class="btn btn-outline-secondary modifyTodo"><i class="fas fa-pencil-alt"></i></button>
-          <button type="button" class="btn btn-outline-secondary"><i class="far fa-clock"></i></button>
-          <button type="button" class="btn btn-outline-secondary removeTodo">X</button>
-        </div>
-      </div>
-    </li>
-  `;
-  });
-  $todos.innerHTML = html;
-};
-
-const maxId = (list) => (list.length ? Math.max(...list.map(todo => todo.id)) + 1 : 1);
-
-const thisId = (target) => +target.parentNode.parentNode.parentNode.id;
-
-const createModifyInput = (target) => {
-  if (!target.classList.contains('modifyTodo')) return;
-  const $createInputWrap = document.querySelector('.chk-type');
-  const $createInput = document.createElement('input');
-
-  todos.forEach(({ id, content }) => {
-    if (id === thisId(target)) {
-      $createInput.setAttribute('type', 'text');
-      $createInput.setAttribute('class', 'label-modify');
-      $createInput.setAttribute('value', content);
-    }
-  });
-  $createInputWrap.appendChild($createInput);
-};
-
-const dateTodo = () => {
-  const date = new Date();
-  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-};
-
 const promiseGetTodo = () => axios.get('http://localhost:9000/todos').then(res => res.data);
 
 const promisePostTodo = (content) => axios.post('http://localhost:9000/todos', {
@@ -110,6 +57,83 @@ const ajaxDeleteTodo = async (target) => {
   }
 };
 
+const renderTodos = () => {
+  let html = '';
+
+  todos.sort((a, b) => b.id - a.id);
+  todos.forEach(({
+    id, content, completed, date
+  }) => {
+    html += `
+    <li id="${id}">
+      <div class="row todos-inner">
+        <div class="col-12 col-md-12 col-lg-8 custom-control custom-checkbox chk-type">
+          <input type="checkbox" class="custom-control-input" id="inputCheck-${id}" ${completed ? 'checked' : ''}>
+          <label class="custom-control-label" for="inputCheck-${id}">${content}</label>
+        </div>
+        <div class="col-6 col-md-8 col-lg-2 text-right">
+          <span id="dateTodo" class="date">${date}</span>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 text-right">
+          <button type="button" class="btn btn-outline-secondary modifyTodo"><i class="fas fa-pencil-alt"></i></button>
+          <button type="button" class="btn btn-outline-secondary"><i class="far fa-clock"></i></button>
+          <button type="button" class="btn btn-outline-secondary removeTodo">X</button>
+        </div>
+      </div>
+    </li>
+  `;
+  });
+  $todos.innerHTML = html;
+};
+
+const maxId = (list) => (list.length ? Math.max(...list.map(todo => todo.id)) + 1 : 1);
+
+const thisId = (target) => +target.parentNode.parentNode.parentNode.id;
+
+const inputTodo = (target, keyCode, fn) => {
+  const content = target.value.trim();
+  fn()
+  if (keyCode !== 13 || content === '' || !target.classList.contains('form-control')) return;
+  target.value = '';
+  ajaxPostTodo(content);
+  ajaxGetTodo();
+};
+
+const dateTodo = () => {
+  const date = new Date();
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+};
+
+const checkedTodo = (target) => {
+  if (!target.classList.contains('custom-control-input')) return;
+  const { checked } = target;
+  const $id = +target.parentNode.parentNode.parentNode.id;
+  ajaxPatchTodoCheck($id, checked);
+  ajaxGetTodo();
+};
+
+const createModifyInput = (target) => {
+  const $createInputWrap = document.querySelector('.chk-type');
+  const $createInput = document.createElement('input');
+
+  todos.forEach(({ id, content }) => {
+    if (id === thisId(target)) {
+      $createInput.setAttribute('type', 'text');
+      $createInput.setAttribute('class', 'label-modify');
+      $createInput.setAttribute('value', content);
+    }
+  });
+  $createInputWrap.appendChild($createInput);
+};
+
+const btnModifyTodo = (target) => {
+  if (target.classList.contains('modifyTodo') || target.tagName === 'svg' || target.tagName === 'path') {
+    if (target.tagName === 'svg') target = target.parentNode;
+    else if (target.tagName === 'path') target = target.parentNode.parentNode;
+    createModifyInput(target);
+  }
+};
+
 const deleteTodo = async (target) => {
   if (!target.classList.contains('removeTodo')) return;
   ajaxDeleteTodo(target);
@@ -135,11 +159,11 @@ window.addEventListener('load', () => {
 });
 
 $inputTodo.addEventListener('keyup', ({ target, keyCode }) => {
-  const content = target.value.trim();
-  if (keyCode !== 13 || content === '' || !target.classList.contains('form-control')) return;
-  target.value = '';
-  ajaxPostTodo(content);
-  ajaxGetTodo();
+  inputTodo(target, keyCode);
+});
+
+$saveTodo.addEventListener('click', ({ target, keyCode }) => {
+  inputTodo(target, keyCode);
 });
 
 $todos.addEventListener('keyup', ({ target, keyCode }) => {
@@ -147,14 +171,10 @@ $todos.addEventListener('keyup', ({ target, keyCode }) => {
 });
 
 $todos.addEventListener('change', ({ target }) => {
-  if (!target.classList.contains('custom-control-input')) return;
-  const { checked } = target;
-  const $id = +target.parentNode.parentNode.parentNode.id;
-  ajaxPatchTodoCheck($id, checked);
-  ajaxGetTodo();
+  checkedTodo(target);
 });
 
 $todos.addEventListener('click', ({ target }) => {
   deleteTodo(target);
-  createModifyInput(target);
+  btnModifyTodo(target);
 });

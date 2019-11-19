@@ -67,6 +67,10 @@ const renderEditor = () => {
   $textArea = document.querySelector('.memoTextArea');
 };
 
+const createMemo = () => {
+  $memoEditor.className !== 'active' ? renderEditor() : removeEditor();
+};
+
 const removeEditor = () => {
   $memoEditor.innerHTML = '';
   $memoEditor.classList.remove('active');
@@ -184,7 +188,7 @@ window.addEventListener('load', () => {
 });
 
 $memoCreate.addEventListener('click', () => {
-  $memoEditor.className !== 'active' ? renderEditor() : removeEditor();
+  createMemo();
 });
 
 $memoEditor.addEventListener('click', (e) => {

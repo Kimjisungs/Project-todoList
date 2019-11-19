@@ -74,11 +74,29 @@ input[type="text"] {
 }
 
 header {
+  position: relative;
   padding: 100px 0 60px;
 }
 
 header .logo {
   font-size: 6rem;
+}
+
+header .weather {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+
+header .weather .image,
+header .weather .description {
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: top;
+}
+
+header .weather .description .country {
+  margin-bottom: 0;
 }
 
 .input-todoList {
