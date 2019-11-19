@@ -2,45 +2,15 @@
   "todos": [
     {
       "id": 1,
-      "content": "오늘121212677765",
-      "completed": false,
+      "content": "오늘121212677765ㅢ",
+      "completed": true,
       "date": "2019-11-16"
     },
     {
       "id": 2,
-      "content": "투두리스트 추가111447777777777777777",
-      "completed": false,
+      "content": "투두리스트 추가111,ㅡ",
+      "completed": true,
       "date": "2019-11-18"
-    },
-    {
-      "id": 3,
-      "content": "asdfsdxd121214455",
-      "completed": false,
-      "date": "2019-11-19"
-    },
-    {
-      "id": 4,
-      "content": "가나다라마바사sdfasa gdfg",
-      "completed": false,
-      "date": "2019-11-19"
-    },
-    {
-      "id": 5,
-      "content": "가나다라",
-      "completed": true,
-      "date": "2019-11-19"
-    },
-    {
-      "id": 6,
-      "content": "ㅁ1313",
-      "completed": true,
-      "date": "2019-11-19"
-    },
-    {
-      "id": 7,
-      "content": "데이터 입력",
-      "completed": false,
-      "date": "2019-11-19"
     }
   ],
   "memo": [

@@ -51,10 +51,11 @@ input[type="checkbox"]:checked + label {
   left: 0;
 }
 
-.chk-type .label-modify {
+.chk-type .label-modify-wrap {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
 }
 
 .btn {
