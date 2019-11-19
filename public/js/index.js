@@ -5,8 +5,9 @@ const $todos = document.querySelector('#todos');
 let todos = [];
 
 const renderTodos = () => {
-  todos.sort((a, b) => b.id - a.id);
   let html = '';
+
+  todos.sort((a, b) => b.id - a.id);
   todos.forEach(({
     id, content, completed, date
   }) => {
@@ -36,11 +37,10 @@ const maxId = (list) => (list.length ? Math.max(...list.map(todo => todo.id)) + 
 
 const thisId = (target) => +target.parentNode.parentNode.parentNode.id;
 
-const createModify = (target) => {
+const createModifyInput = (target) => {
   if (!target.classList.contains('modifyTodo')) return;
-  console.log(target);
+  const $createInputWrap = document.querySelector('.chk-type');
   const $createInput = document.createElement('input');
-  const todoNode = target.parentNode.previousElementSibling.previousElementSibling;
 
   todos.forEach(({ id, content }) => {
     if (id === thisId(target)) {
@@ -49,7 +49,7 @@ const createModify = (target) => {
       $createInput.setAttribute('value', content);
     }
   });
-  todoNode.appendChild($createInput);
+  $createInputWrap.appendChild($createInput);
 };
 
 const dateTodo = () => {
@@ -156,5 +156,5 @@ $todos.addEventListener('change', ({ target }) => {
 
 $todos.addEventListener('click', ({ target }) => {
   deleteTodo(target);
-  createModify(target);
+  createModifyInput(target);
 });
