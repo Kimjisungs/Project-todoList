@@ -6,6 +6,37 @@ const $memoTextArea = document.querySelector('#memoTextArea');
 let $textArea;
 let memo = [];
 
+const promiseGetMemo = () => axios.get('http://localhost:9000/memo').then(res => res.data);
+
+const promisePostMemo = () => axios.post('http://localhost:9000/memo', memoData());
+
+const promiseDeleteMemo = (id) => axios.delete(`http://localhost:9000/memo/${id}`);
+
+const ajaxGetMemo = async () => {
+  try {
+    memo = await promiseGetMemo();
+    renderMemo();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const ajaxPostMemo = async () => {
+  try {
+    await promisePostMemo();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const ajaxDeleteMemo = async (id) => {
+  try {
+    await promiseDeleteMemo(id);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const renderEditor = () => {
   let html = '';
   html += `
@@ -99,37 +130,6 @@ const memoData = () => ({
   fontItalic: $textArea.style.fontStyle || 'normal',
   bgColor: $textArea.style.backgroundColor || 'white'
 });
-
-const promiseGetMemo = () => axios.get('http://localhost:9000/memo').then(res => res.data);
-
-const promisePostMemo = () => axios.post('http://localhost:9000/memo', memoData());
-
-const promiseDeleteMemo = (id) => axios.delete(`http://localhost:9000/memo/${id}`);
-
-const ajaxGetMemo = async () => {
-  try {
-    memo = await promiseGetMemo();
-    renderMemo();
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-const ajaxPostMemo = async () => {
-  try {
-    await promisePostMemo();
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-const ajaxDeleteMemo = async (id) => {
-  try {
-    await promiseDeleteMemo(id);
-  } catch (e) {
-    console.log(e);
-  }
-};
 
 const font = (() => {
   const style = (fontStyle, target, fn) => {

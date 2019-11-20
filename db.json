@@ -2,21 +2,24 @@
   "todos": [
     {
       "id": 1,
-      "content": "오늘121212677765ㅢ",
-      "completed": false,
-      "date": "2019-11-16"
-    },
-    {
-      "id": 2,
-      "content": "ㄴㅇㄹㅁㄴㅇㄹ",
-      "completed": false,
-      "date": "2019-11-20"
+      "content": "투두리스트1",
+      "completed": true,
+      "date": "2019-11-20",
+      "alarm": "26-59"
     },
     {
       "id": 3,
-      "content": "ㄼㄱㄱㄷ",
+      "content": "나의 투두리스트 할일 관리",
+      "completed": true,
+      "date": "2019-11-21",
+      "alarm": "-1"
+    },
+    {
+      "id": 4,
+      "content": "영화 시간표를 어떤 방식으로 관리하는것이",
       "completed": false,
-      "date": "2019-11-20"
+      "date": "2019-11-21",
+      "alarm": "-1"
     }
   ],
   "memo": [
@@ -93,15 +96,6 @@
       "bgColor": "blue"
     },
     {
-      "id": 9,
-      "content": "sdafsfd",
-      "fontWeight": 400,
-      "fontSize": 20,
-      "fontColor": "#222",
-      "fontItalic": "normal",
-      "bgColor": "white"
-    },
-    {
       "id": 10,
       "content": "가나다라마바사",
       "fontWeight": "700",
@@ -109,6 +103,15 @@
       "fontColor": "rgb(255, 255, 0)",
       "fontItalic": "italic",
       "bgColor": "green"
+    },
+    {
+      "id": 11,
+      "content": "가나다라마ㅏ사\n",
+      "fontWeight": 400,
+      "fontSize": 20,
+      "fontColor": "#222",
+      "fontItalic": "normal",
+      "bgColor": "white"
     }
   ]
 }

@@ -45,12 +45,12 @@ const renderWeather = () => {
 
   weatherBackground(nowWeather);
 };
-
+// https://user-images.githubusercontent.com/33679192/69259163-24325380-0c01-11ea-914c-928b26fa04dd.jpg
 const weatherBackground = (nowWeather) => {
   const wrapperBg = $wrapper.style;
   switch (nowWeather) {
     case 'Clear':
-      wrapperBg.backgroundImage = 'url("https://user-images.githubusercontent.com/33679192/69144269-41d2c080-0b0e-11ea-98c2-017b4739d299.jpg")';
+      wrapperBg.backgroundImage = 'url("https://user-images.githubusercontent.com/33679192/69259163-24325380-0c01-11ea-914c-928b26fa04dd.jpg")';
       break;
     default:
       wrapperBg.backgroundColor = 'white';

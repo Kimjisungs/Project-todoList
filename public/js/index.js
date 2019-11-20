@@ -1,18 +1,24 @@
 const $inputTodo = document.querySelector('#inputTodo');
 const $saveTodo = document.querySelector('#saveTodo');
 const $todos = document.querySelector('#todos');
+const $modalClose = document.querySelector('.btn-modal-close');
+const $inputAlramMinutes = document.querySelector('.alarm-minutes');
+const $inputAlramSeconds = document.querySelector('.alarm-seconds');
+const $saveAlarm = document.querySelector('#save-alarm');
 
 let todos = [];
 
 const promiseGetTodo = () => axios.get('http://localhost:9000/todos').then(res => res.data);
 
 const promisePostTodo = (content) => axios.post('http://localhost:9000/todos', {
-  id: maxId(todos), content, completed: false, date: dateTodo()
+  id: maxId(todos), content, completed: false, date: dateTodo(), alarm: '-1'
 });
 
 const promisePatchTodoCheck = (id, checked) => axios.patch(`http://localhost:9000/todos/${id}`, { completed: checked });
 
 const promisePatchTodoContent = (target, content) => axios.patch(`http://localhost:9000/todos/${thisId(target.parentNode)}`, { content });
+
+const promisePatchTodoAlarm = (target, alarm) => axios.patch(`http://localhost:9000/todos/${thisId(target)}`, { alarm });
 
 const promiseDeleteTodo = (target) => axios.delete(`http://localhost:9000/todos/${thisId(target)}`);
 
@@ -20,6 +26,14 @@ const ajaxGetTodo = async () => {
   try {
     todos = await promiseGetTodo();
     renderTodos();
+  } catch (e) {
+    console.log(new Error('Error'));
+  }
+};
+
+const ajaxGetCheck = async () => {
+  try {
+    todos = await promiseGetTodo();
   } catch (e) {
     console.log(new Error('Error'));
   }
@@ -49,6 +63,14 @@ const ajaxPatchTodoContent = async (target, content) => {
   }
 };
 
+const ajaxPatchAlarmData = async (target, alarm) => {
+  try {
+    await promisePatchTodoAlarm(target, alarm);
+  } catch (e) {
+    console.log(new Error('Error'));
+  }
+};
+
 const ajaxDeleteTodo = async (target) => {
   try {
     await promiseDeleteTodo(target);
@@ -67,7 +89,7 @@ const renderTodos = () => {
     html += `
     <li id="${id}">
       <div class="row todos-inner">
-        <div class="col-12 col-md-12 col-lg-8 custom-control custom-checkbox chk-type">
+        <div class="col-12 col-md-12 col-lg-7 custom-control custom-checkbox chk-type">
           <input type="checkbox" class="custom-control-input" id="inputCheck-${id}" ${completed ? 'checked' : ''}>
           <label class="custom-control-label" for="inputCheck-${id}">${content}</label>
           <div class="label-modify-wrap"></div>
@@ -75,10 +97,10 @@ const renderTodos = () => {
         <div class="col-6 col-md-8 col-lg-2 text-right">
           <span id="dateTodo" class="date">${date}</span>
         </div>
-        <div class="col-6 col-md-4 col-lg-2 text-right">
-          <button type="button" class="btn btn-outline-secondary modifyTodo"><i class="fas fa-pencil-alt"></i></button>
-          <button type="button" class="btn btn-outline-secondary"><i class="far fa-clock"></i></button>
-          <button type="button" class="btn btn-outline-secondary removeTodo">X</button>
+        <div class="col-6 col-md-4 col-lg-3 text-right">
+          <button type="button" class="btn btn-outline-light modifyTodo"><i class="fas fa-pencil-alt fa-xs"></i></button>
+          <button type="button" class="btn btn-outline-light alramTodo" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-clock fa-xs"></i><span class="alarm-time"></span></button>
+          <button type="button" class="btn btn-outline-light removeTodo">x</button>
         </div>
       </div>
     </li>
@@ -112,12 +134,40 @@ const checkedTodo = (target) => {
   ajaxGetTodo();
 };
 
-const btnModifyTodo = (target) => {
-  if (target.classList.contains('modifyTodo') || (target.tagName === 'svg' && target.parentNode.classList.contains('modifyTodo')) || (target.tagName === 'path' && target.parentNode.parentNode.classList.contains('modifyTodo'))) {
-    if (target.tagName === 'svg') target = target.parentNode;
-    else if (target.tagName === 'path') target = target.parentNode.parentNode;
-    createModifyInput(target);
+const alarmCheck = () => {
+  setInterval (() => {
+    ajaxGetCheck();
+    alarmWork();
+  }, 1000);
+};
+
+const alarmWork = () => {
+  const timeDate = new Date();
+  const timeMinute = timeDate.getMinutes();
+  const timeSecond = timeDate.getSeconds();
+  todos.forEach(({ alarm, content }) => {
+    const _alarmMinute = alarm.split('-')[0];
+    const _alarmSecond = alarm.split('-')[1];
+    console.log(+_alarmMinute, +_alarmSecond);
+    console.log(timeMinute, timeSecond);
+    if (+_alarmMinute === timeMinute && +_alarmSecond === timeSecond) alert(content);
+  });
+};
+
+const buttonCondition = (btnTarget, target, fn) => {
+  if (btnTarget.classList.contains(target) || (btnTarget.tagName === 'svg' && btnTarget.parentNode.classList.contains(target)) || (btnTarget.tagName === 'path' && btnTarget.parentNode.parentNode.classList.contains(target))) {
+    if (btnTarget.tagName === 'svg') btnTarget = btnTarget.parentNode;
+    else if (btnTarget.tagName === 'path') btnTarget = btnTarget.parentNode.parentNode;
+    fn(btnTarget);
   }
+};
+
+const btnModifyTodo = (btnTarget) => {
+  buttonCondition(btnTarget, 'modifyTodo', (value) => createModifyInput(value));
+};
+
+const btnAlramTodo = (btnTarget) => {
+  buttonCondition(btnTarget, 'alramTodo', (value) => saveAlramTodo(value));
 };
 
 const createModifyInput = (target) => {
@@ -132,6 +182,36 @@ const createModifyInput = (target) => {
   renderUiInput(target, $createInput);
 };
 
+const saveAlramTodo = (btnTarget) => {
+
+  $inputAlramMinutes.id = `alarmMinutes-${thisId(btnTarget)}`;
+  $inputAlramSeconds.id = `alarmSeconds-${thisId(btnTarget)}`;
+  $saveAlarm.addEventListener('click', () => {
+    if ($inputAlramMinutes.id === `alarmMinutes-${thisId(btnTarget)}` && $inputAlramSeconds.id === `alarmSeconds-${thisId(btnTarget)}`) {
+      const alarmMinutes = $inputAlramMinutes.value;
+      const alarmSeconds = $inputAlramSeconds.value;
+      ajaxPatchAlarmData(btnTarget, `${alarmMinutes}-${alarmSeconds}`);
+      alarmDataClear();
+      alarmTimeAdded(alarmMinutes, alarmSeconds, btnTarget);
+    }
+  });
+};
+
+const alarmDataClear = () => {
+  $inputAlramMinutes.value = '';
+  $inputAlramSeconds.value = '';
+  $modalClose.click();
+};
+
+const alarmTimeAdded = (alarmMinutes, alarmSeconds, btnTarget) => {
+  const $alarmTime = document.querySelector('.alarm-time');
+  todos.forEach(todo => {
+    if (todo.id === +$alarmTime.parentNode.parentNode.parentNode.parentNode.id) {
+      btnTarget.children[1].innerHTML = `${alarmMinutes}분 ${alarmSeconds}초`;
+    }
+  });
+};
+
 const renderUiInput = (target, $createInput) => {
   [...$todos.children].forEach((list) => {
     const labelModifyWrap = list.children[0].children[0].children[2];
@@ -144,20 +224,19 @@ const renderUiInput = (target, $createInput) => {
   });
 };
 
-const modifyTodo = (target, keyCode, event) => {
-  if (!target.classList.contains('label-modify')) return;
-  const content = target.value;
-  ajaxPatchTodoContent(target, content);
-  modifyTodoEnterEvent(target, keyCode, event);
-};
-
-const modifyTodoEnterEvent = (target, keyCode, event) => {
+const modifyTodoEvent = (target, keyCode, event) => {
   if (event === 'keyup' || event === 'focusout') {
     if (event === 'keyup' && keyCode !== 13) return;
     target.parentNode.removeChild(target);
     ajaxGetTodo();
   }
-  // keyCode === 13
+};
+
+const modifyTodo = (target, keyCode, event) => {
+  if (!target.classList.contains('label-modify')) return;
+  const content = target.value;
+  ajaxPatchTodoContent(target, content);
+  modifyTodoEvent(target, keyCode, event);
 };
 
 const deleteTodo = async (target) => {
@@ -168,6 +247,7 @@ const deleteTodo = async (target) => {
 
 window.addEventListener('load', () => {
   ajaxGetTodo();
+  alarmCheck();
 });
 
 $inputTodo.addEventListener('keyup', ({ target, keyCode }) => {
@@ -194,4 +274,5 @@ $todos.addEventListener('change', ({ target }) => {
 $todos.addEventListener('click', ({ target }) => {
   deleteTodo(target);
   btnModifyTodo(target);
+  btnAlramTodo(target);
 });
