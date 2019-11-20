@@ -3,14 +3,20 @@
     {
       "id": 1,
       "content": "오늘121212677765ㅢ",
-      "completed": true,
+      "completed": false,
       "date": "2019-11-16"
     },
     {
       "id": 2,
-      "content": "투두리스트 추가111,ㅡ",
-      "completed": true,
-      "date": "2019-11-18"
+      "content": "ㄴㅇㄹㅁㄴㅇㄹ",
+      "completed": false,
+      "date": "2019-11-20"
+    },
+    {
+      "id": 3,
+      "content": "ㄼㄱㄱㄷ",
+      "completed": false,
+      "date": "2019-11-20"
     }
   ],
   "memo": [
@@ -94,6 +100,15 @@
       "fontColor": "#222",
       "fontItalic": "normal",
       "bgColor": "white"
+    },
+    {
+      "id": 10,
+      "content": "가나다라마바사",
+      "fontWeight": "700",
+      "fontSize": "40px",
+      "fontColor": "rgb(255, 255, 0)",
+      "fontItalic": "italic",
+      "bgColor": "green"
     }
   ]
 }

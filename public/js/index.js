@@ -113,7 +113,7 @@ const checkedTodo = (target) => {
 };
 
 const btnModifyTodo = (target) => {
-  if (target.classList.contains('modifyTodo') || target.tagName === 'svg' || target.tagName === 'path') {
+  if (target.classList.contains('modifyTodo') || (target.tagName === 'svg' && target.parentNode.classList.contains('modifyTodo')) || (target.tagName === 'path' && target.parentNode.parentNode.classList.contains('modifyTodo'))) {
     if (target.tagName === 'svg') target = target.parentNode;
     else if (target.tagName === 'path') target = target.parentNode.parentNode;
     createModifyInput(target);
