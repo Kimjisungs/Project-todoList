@@ -94,31 +94,22 @@
       "bgColor": "blue"
     },
     {
-      "id": 8,
-      "content": "가나다라 마바사아",
-      "fontWeight": "700",
-      "fontSize": "40px",
-      "fontColor": "rgb(255, 255, 0)",
-      "fontItalic": "italic",
-      "bgColor": "blue"
-    },
-    {
-      "id": 10,
-      "content": "가나다라마바사",
-      "fontWeight": "700",
-      "fontSize": "40px",
-      "fontColor": "rgb(255, 255, 0)",
-      "fontItalic": "italic",
-      "bgColor": "green"
-    },
-    {
-      "id": 11,
-      "content": "가나다라마ㅏ사\n",
+      "id": 13,
+      "content": "dsafsdfdf",
       "fontWeight": 400,
       "fontSize": 20,
-      "fontColor": "#222",
+      "fontColor": "#fff",
       "fontItalic": "normal",
-      "bgColor": "white"
+      "bgColor": "rgba(55, 204, 49, 0.3)"
+    },
+    {
+      "id": 14,
+      "content": "동해물과백 두산이 ",
+      "fontWeight": "700",
+      "fontSize": "40px",
+      "fontColor": "rgb(255, 255, 0)",
+      "fontItalic": "italic",
+      "bgColor": "rgba(235, 90, 79, 0.3)"
     }
   ]
 }

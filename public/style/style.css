@@ -208,8 +208,18 @@ header .weather .description .country {
 
 .memo-box {
   margin-top: 100px;
-  padding: 30px 20px;
-  border: 1px solid #ced4da;
+  padding: 60px;
+  border: 0 none;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 10px 1px rgba(14,9,43,1);
+}
+
+.memo-box > .row {
+  margin: 0;
+}
+
+.memo-box > .row > div {
+  padding: 0;
 }
 
 .memo-box .dropdown {
@@ -224,7 +234,54 @@ header .weather .description .country {
   height: auto;
 }
 
+.memo-box .btn-area > div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.memo-box .btn-area .fontColor input[type="text"] {
+  height: 47px;
+  color: #fff;
+}
+
+.memo-box .btn-palete {
+  border: 0 !important;
+  padding: 7px 42px;
+}
+
+.memo-box .cir-skyBlue {
+  background-color: #5797FF;
+}
+
+.memo-box .cir-brown {
+  background-color: #CC7231;
+}
+
+.memo-box .cir-salgu {
+  background-color: #FFAC70;
+}
+
+.memo-box .cir-green {
+  background-color: #37CC31;
+}
+
+.memo-box .cir-red {
+  background-color: #EB5A4F;
+}
+
 .memo-create {
+  margin-top: 100px;
+}
+
+.saveMemo,
+.cancelMemo {
+  padding: 7px 40px;
+  border: 0 none !important;
+}
+
+
+
+#memoEditor.active + .memo-create {
   margin-top: 40px;
 }
 
@@ -241,7 +298,12 @@ header .weather .description .country {
   height: 250px;
   padding: 20px;
   resize: none;
-  border: 1px solid #ced4da;
+  border: 0 none;
+  background-color: rgba(255, 255, 255, 0.2);
+  outline: none;
+  color: #fff;
+  box-shadow: 0px 0px 10px 1px rgba(14,9,43,0.4);
+  border-radius: 10px;
 }
 
 .memo-btn {

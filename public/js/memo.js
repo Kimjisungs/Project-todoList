@@ -42,9 +42,9 @@ const renderEditor = () => {
   html += `
    <div class="memo-box">
       <div class="row">
-        <div class="col-8 col-md-10 col-lg-8">
+        <div class="col-8 col-md-10 col-lg-10 btn-area">
           <div id="memoFontWeight" class="dropdown">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               font-weight
             </button>
             <div class="dropdown-menu fontWeight" aria-labelledby="dropdownMenuButton">
@@ -53,7 +53,7 @@ const renderEditor = () => {
             </div>
           </div>
           <div id="memoFontSize" class="dropdown">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               font-size
             </button>
             <div class="dropdown-menu fontSize" aria-labelledby="dropdownMenuButton">
@@ -66,19 +66,19 @@ const renderEditor = () => {
             </div>
           </div>
           <div class="fontColor"><input type="text" id="memoFontColor" class="form-control" value="#" placeholder="" maxlength="7"></div>
-          <div class="fontItalic"><button type="button" id="memoFontItalic" class="btn btn-outline-secondary memoItalic">italic</button></div>
+          <div class="fontItalic"><button type="button" id="memoFontItalic" class="btn btn-outline-light memoItalic">italic</button></div>
         </div>
-        <div class="col-4 col-md-2 col-lg-4 text-right">
+        <div class="col-4 col-md-2 col-lg-2 text-right">
           <div id="memoBgc" class="dropdown">
-            <button class="btn btn-outline-danger" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-danger btn-palete" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-palette"></i>
             </button>
             <div class="dropdown-menu type2 border-0 row bg-color" aria-labelledby="dropdownMenuButton">
-              <a class="drop-circle cir-red col" href="#">red</a>
-              <a class="drop-circle cir-blue col" href="#">blue</a>
-              <a class="drop-circle cir-yellow col" href="#">yellow</a>
-              <a class="drop-circle cir-green col" href="#">green</a>
-              <a class="drop-circle cir-skyblue col" href="#">skyblue</a>
+              <a class="drop-circle cir-skyBlue col" href="#">rgba(184, 211, 255, 0.3)</a>
+              <a class="drop-circle cir-brown col" href="#">rgba(204, 114, 49, 0.3)</a>
+              <a class="drop-circle cir-salgu col" href="#">rgba(255, 172, 112, 0.3)</a>
+              <a class="drop-circle cir-green col" href="#">rgba(55, 204, 49, 0.3)</a>
+              <a class="drop-circle cir-red col" href="#">rgba(235, 90, 79, 0.3)</a>
             </div>
           </div>
         </div>
@@ -87,8 +87,8 @@ const renderEditor = () => {
         <textarea id="memoTextArea" class="memoTextArea" cols="30" rows="10" style="font-style:normal;"></textarea>
       </div>
       <div class="memo-btn text-right">
-        <button type="button" id="saveMemo" class="btn btn-outline-primary saveMemo">Save</button>
-        <button type="button" id="cancelMemo" class="btn btn-outline-secondary cancelMemo">Cancel</button>
+        <button type="button" id="saveMemo" class="btn btn-danger saveMemo">Save</button>
+        <button type="button" id="cancelMemo" class="btn btn-secondary cancelMemo">Cancel</button>
       </div>
     </div>
     `;
@@ -126,7 +126,7 @@ const memoData = () => ({
   content: $textArea.value,
   fontWeight: $textArea.style.fontWeight || 400,
   fontSize: $textArea.style.fontSize || 20,
-  fontColor: $textArea.style.color || '#222',
+  fontColor: $textArea.style.color || '#fff',
   fontItalic: $textArea.style.fontStyle || 'normal',
   bgColor: $textArea.style.backgroundColor || 'white'
 });
