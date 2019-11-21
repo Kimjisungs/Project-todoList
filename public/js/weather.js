@@ -52,6 +52,9 @@ const weatherBackground = (nowWeather) => {
     case 'Clear':
       wrapperBg.backgroundImage = 'url("https://user-images.githubusercontent.com/33679192/69259163-24325380-0c01-11ea-914c-928b26fa04dd.jpg")';
       break;
+    case 'Clouds':
+      wrapperBg.backgroundImage = 'url("https://user-images.githubusercontent.com/33679192/69259163-24325380-0c01-11ea-914c-928b26fa04dd.jpg")';
+      break;
     default:
       wrapperBg.backgroundColor = 'white';
       break;

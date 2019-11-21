@@ -84,12 +84,12 @@ const renderTodos = () => {
 
   todos.sort((a, b) => b.id - a.id);
   todos.forEach(({
-    id, content, completed, date
+    id, content, completed, date, alarm
   }) => {
     html += `
     <li id="${id}">
       <div class="row todos-inner">
-        <div class="col-12 col-md-12 col-lg-7 custom-control custom-checkbox chk-type">
+        <div class="col-12 col-md-12 col-lg-8 custom-control custom-checkbox chk-type">
           <input type="checkbox" class="custom-control-input" id="inputCheck-${id}" ${completed ? 'checked' : ''}>
           <label class="custom-control-label" for="inputCheck-${id}">${content}</label>
           <div class="label-modify-wrap"></div>
@@ -97,9 +97,9 @@ const renderTodos = () => {
         <div class="col-6 col-md-8 col-lg-2 text-right">
           <span id="dateTodo" class="date">${date}</span>
         </div>
-        <div class="col-6 col-md-4 col-lg-3 text-right">
+        <div class="col-6 col-md-4 col-lg-2 text-right">
           <button type="button" class="btn btn-outline-light modifyTodo"><i class="fas fa-pencil-alt fa-xs"></i></button>
-          <button type="button" class="btn btn-outline-light alramTodo" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-clock fa-xs"></i><span class="alarm-time"></span></button>
+          <button type="button" class="btn btn-outline-light alramTodo" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-clock fa-xs"></i><span class="alarm-time">${alarm !== '-' ? (alarm.split('-')[0] + '분' + alarm.split('-')[1]) + '초' : ''}</span></button>
           <button type="button" class="btn btn-outline-light removeTodo">x</button>
         </div>
       </div>
@@ -183,7 +183,6 @@ const createModifyInput = (target) => {
 };
 
 const saveAlramTodo = (btnTarget) => {
-
   $inputAlramMinutes.id = `alarmMinutes-${thisId(btnTarget)}`;
   $inputAlramSeconds.id = `alarmSeconds-${thisId(btnTarget)}`;
   $saveAlarm.addEventListener('click', () => {
@@ -193,6 +192,7 @@ const saveAlramTodo = (btnTarget) => {
       ajaxPatchAlarmData(btnTarget, `${alarmMinutes}-${alarmSeconds}`);
       alarmDataClear();
       alarmTimeAdded(alarmMinutes, alarmSeconds, btnTarget);
+      // renderTodos();
     }
   });
 };
