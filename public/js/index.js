@@ -99,7 +99,7 @@ const renderTodos = () => {
         </div>
         <div class="col-6 col-md-4 col-lg-2 text-right">
           <button type="button" class="btn btn-outline-light modifyTodo"><i class="fas fa-pencil-alt fa-xs"></i></button>
-          <button type="button" class="btn btn-outline-light alramTodo" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-clock fa-xs"></i><span class="alarm-time">${alarm !== '-' ? (alarm.split('-')[0] + '분' + alarm.split('-')[1]) + '초' : ''}</span></button>
+          <button type="button" class="btn btn-outline-light alramTodo" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-clock fa-xs"></i><span class="alarm-time">${alarm !== '-' || '-1' ? (alarm.split('-')[0] + '분' + alarm.split('-')[1]) + '초' : ''}</span></button>
           <button type="button" class="btn btn-outline-light removeTodo">x</button>
         </div>
       </div>

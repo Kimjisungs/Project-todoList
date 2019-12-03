@@ -8,25 +8,18 @@
       "alarm": "11-11"
     },
     {
+      "id": 2,
+      "content": "가나다라",
+      "completed": false,
+      "date": "2019-11-21",
+      "alarm": "11-11"
+    },
+    {
       "id": 3,
-      "content": "나의 투두리스트 할일 관리",
-      "completed": true,
-      "date": "2019-11-21",
-      "alarm": "22-11"
-    },
-    {
-      "id": 4,
-      "content": "영화 시간표를 어떤 방식으로 관리하는것이",
+      "content": "ㄴㅁㄹㄴㅁㅇㄹ",
       "completed": false,
       "date": "2019-11-21",
-      "alarm": "33-22"
-    },
-    {
-      "id": 6,
-      "content": "ㄴㅁㅇㅁㅇㄴㄹㄹ",
-      "completed": false,
-      "date": "2019-11-21",
-      "alarm": "-"
+      "alarm": "-1"
     }
   ],
   "memo": [
@@ -110,6 +103,15 @@
       "fontColor": "rgb(255, 255, 0)",
       "fontItalic": "italic",
       "bgColor": "rgba(235, 90, 79, 0.3)"
+    },
+    {
+      "id": 15,
+      "content": "fddagdgdfs",
+      "fontWeight": "700",
+      "fontSize": "40px",
+      "fontColor": "rgb(255, 255, 0)",
+      "fontItalic": "normal",
+      "bgColor": "rgba(255, 172, 112, 0.3)"
     }
   ]
 }
